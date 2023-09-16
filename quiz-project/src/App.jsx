@@ -24,7 +24,7 @@ function App() {
           </Span>
           <Span>
             <Label>Senha</Label>
-            <Input type='text'></Input>
+            <Input type='password'></Input>
           </Span>
           <Link href="/">Esqueci a senha</Link>
           <Button /* onSubmit={} */>Entrar</Button>
