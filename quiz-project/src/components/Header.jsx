@@ -1,5 +1,5 @@
-import { Title } from "../../styles";
-import { StyledHeader } from "../../styles";
+import { Title } from "../styles";
+import { StyledHeader } from "../styles";
 
 const Star = () => {
     return (

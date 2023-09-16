@@ -6,7 +6,7 @@ export const Button = styled.button`
     font-weight: 700;
     cursor: pointer;
     min-width: 16rem;
-    width: min-content;
+    width: fit-content;
     padding: 1rem 4rem;
     display: flex;
     justify-content: center;
@@ -27,7 +27,7 @@ export const ButtonDarkTheme = styled.button`
     font-weight: 700;
     cursor: pointer;
     min-width: 16rem;
-    width: min-content;
+    width: fit-content;
     padding: 1rem 4rem;
     display: flex;
     justify-content: center;
@@ -138,7 +138,7 @@ export const Form = styled.form`
     flex-direction: column;
 `;
 
-export const Link = styled.a`
+/* export const Link = styled.a`
     color: #FFF;
     text-decoration: none;
     width: fit-content;
@@ -146,5 +146,5 @@ export const Link = styled.a`
     &:hover {
         text-decoration: underline;
     }
-`;
+`; */
 

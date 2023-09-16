@@ -1,4 +1,4 @@
-import { StyledModal, StyledExitButtonSvg, BgModal } from '../../styles'
+import { StyledModal, StyledExitButtonSvg, BgModal } from '../styles'
 
 export default function Modal({isOpen, closeModal, children}) {
     if (isOpen) {
