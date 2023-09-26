@@ -1,4 +1,4 @@
-import { StyledModal, StyledExitButtonSvg, BgModal } from "../styles";
+import { StyledModal, StyledExitButtonSvg, BgModal, Center } from "../styles";
 
 const Modal = ({ isOpen, closeModal, children }) => {
   if (isOpen) {
@@ -42,7 +42,7 @@ const Modal = ({ isOpen, closeModal, children }) => {
               />
             </svg>
           </StyledExitButtonSvg>
-          <section>{children}</section>
+          <Center>{children}</Center>
         </StyledModal>
       </BgModal>
     );

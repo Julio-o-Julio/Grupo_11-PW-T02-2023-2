@@ -20,6 +20,9 @@ export const Button = styled.button`
   &:hover {
     border-color: rgba(255, 255, 255, 0.8);
   }
+  &:disabled {
+    opacity: 0.7;
+  }
 `;
 
 export const ButtonDarkTheme = styled.button`

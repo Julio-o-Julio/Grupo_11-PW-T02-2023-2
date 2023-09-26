@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CenterInLine, StyledProfile } from "../styles";
+import { useNavigate } from "react-router-dom";
+import { Button, CenterInLine, StyledProfile } from "../styles";
 import Modal from "./Modal";
 
 const AvatarProfile = () => {
@@ -44,7 +45,14 @@ function getName(user) {
 }
 
 const Profile = ({ user }) => {
+  const navigate = useNavigate()
+
   const [openModal, setOpenModal] = useState(false);
+
+  const handleExit = () => {
+    console.log("entrou!");
+    return navigate("/login");
+  };
 
   return (
     <>
@@ -57,6 +65,7 @@ const Profile = ({ user }) => {
           <AvatarProfile />
           {getName(user)}
         </CenterInLine>
+        <Button onClick={handleExit}>Sair</Button>
       </Modal>
     </>
   );
