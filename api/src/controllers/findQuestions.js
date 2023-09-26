@@ -1,7 +1,7 @@
 const admin = require('firebase-admin');
 
 const findQuestions = (request, response) => {
-  const categoryId = request.params.categories;
+  const categoryId = request.params.category;
   console.log(`get questions of ${request.params.categories}`);
   admin
     .firestore()

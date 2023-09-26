@@ -3,6 +3,6 @@ const findQuestions = require('../controllers/findQuestions');
 
 const routes = express.Router();
 
-routes.get('/:categories', findQuestions);
+routes.get('/:category', findQuestions);
 
 module.exports = routes;
