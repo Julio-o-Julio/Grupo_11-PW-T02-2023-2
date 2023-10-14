@@ -2,7 +2,7 @@ const admin = require('firebase-admin');
 
 const findUser = (request, response) => {
   const userId = request.params.user;
-  console.log(`get questions of ${request.params.categories}`);
+  console.log(`get data of ${request.params.user}`);
   admin
     .firestore()
     .collection('users')

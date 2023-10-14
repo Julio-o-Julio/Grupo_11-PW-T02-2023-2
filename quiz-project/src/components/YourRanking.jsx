@@ -1,18 +1,20 @@
-import { StyledYourRanking, Center } from "../styles";
-import MotivationalPhrase from "./MotivationalPhrase";
+import { StyledYourRanking, Center } from '../styles';
+import MotivationalPhrase from './MotivationalPhrase';
 
-function getRanking(user) {
-  return user.ranking + "°";
-}
+const getRanking = (uid) => {
+  return 2;
+};
 
-const YourRanking = ({ user }) => {
+const YourRanking = ({ uid }) => {
+  const ranking = getRanking(uid);
+
   return (
     <Center>
-      <StyledYourRanking key={user.id}>
+      <StyledYourRanking key={uid}>
         Seu Ranking global
-        <span>{getRanking(user)}</span>
+        <span>{ranking + '°'}</span>
       </StyledYourRanking>
-      <MotivationalPhrase ranking={user.ranking} />
+      <MotivationalPhrase ranking={ranking} />
     </Center>
   );
 };

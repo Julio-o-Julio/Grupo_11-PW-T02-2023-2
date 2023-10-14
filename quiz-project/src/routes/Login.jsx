@@ -1,59 +1,79 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Form, Input, Label, SubTitle } from "../styles/index";
-import Header from "../components/Header";
-import { useState } from "react";
-import { loginFirebase } from "../auth/loginFirebase";
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  Button,
+  ContainerForm,
+  ContentForm,
+  Input,
+  Label,
+  SpanError
+} from '../styles/index';
+import Header from '../components/Header';
+import { loginFirebase } from '../auth/loginFirebase';
+import { useForm } from 'react-hook-form';
+import validator from 'validator';
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const [dataForm, setDataForm] = useState({
-    email: "",
-    password: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
 
-  const handleChange = (event) => {
-    setDataForm((dataForm) => ({
-      ...dataForm,
-      [event.target.name]: event.target.value,
-    }));
-  };
-
-  const handleDataLogin = async (event) => {
-    event.preventDefault();
-
+  const onSubmit = async (data) => {
     try {
-      const result = await loginFirebase(dataForm.email, dataForm.password);
-      if (result) return navigate("/");
+      const result = await loginFirebase(data.email, data.password);
+      if (result) return navigate('/');
     } catch (error) {
-      console.error("Erro durante o login:", error);
+      console.error('Erro durante o login:', error);
     }
   };
 
   return (
     <>
       <Header>Entrar</Header>
-      <Form onSubmit={handleDataLogin}>
-        <Label>E-mail</Label>
-        <Input name="email" type="email" onChange={handleChange} required />
+      <ContainerForm>
+        <ContentForm>
+          <Label>E-mail</Label>
+          <Input
+            type="email"
+            placeholder="meuemail@gmail.com"
+            {...register('email', {
+              required: true,
+              validate: (value) => validator.isEmail(value)
+            })}
+          />
+          {errors?.email?.type == 'required' && (
+            <SpanError>O e-mail é obrigatório!</SpanError>
+          )}
+          {errors?.email?.type == 'validate' && (
+            <SpanError>E-mail inválido!</SpanError>
+          )}
+        </ContentForm>
 
-        <Label>Senha</Label>
-        <Input
-          name="password"
-          type="password"
-          onChange={handleChange}
-          required
-        />
+        <ContentForm>
+          <Label>Senha</Label>
+          <Input
+            className={errors?.password && 'input-error'}
+            type="password"
+            placeholder="minhasenha123"
+            {...register('password', { required: true })}
+          />
+          {errors?.password?.type == 'required' && (
+            <SpanError>A senha é obrigatória!</SpanError>
+          )}
+        </ContentForm>
 
-        <Link to={"/recoverpassword"}>
-          <SubTitle>Esqueci a senha</SubTitle>
+        <Link to={'/recoverpassword'} style={{ marginBottom: 16 }}>
+          Esqueci a senha
         </Link>
 
-        <Button type="submit">Entrar</Button>
-      </Form>
+        <Button onClick={() => handleSubmit(onSubmit)()}>Entrar</Button>
+      </ContainerForm>
       <span>
         <p>Não tem uma conta?</p>
-        <Link to={"/register"}>Clique aqui para cadastrar-se!</Link>
+        <Link to={'/register'}>Clique aqui para cadastrar-se!</Link>
       </span>
     </>
   );

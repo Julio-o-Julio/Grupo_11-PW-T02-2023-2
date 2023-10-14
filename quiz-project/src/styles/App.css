@@ -14,3 +14,16 @@
   align-items: center;
   justify-content: space-between;
 }
+
+::-webkit-input-placeholder {
+  color: #fff;
+  opacity: 0.1;
+}
+input:-moz-placeholder {
+  color: #fff;
+  opacity: 0.1;
+}
+textarea:-moz-placeholder {
+  color: #fff;
+  opacity: 0.1;
+}

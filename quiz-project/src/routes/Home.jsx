@@ -1,26 +1,19 @@
-import ButtonAbout from "../components/ButtonAbout";
-import ButtonAchievements from "../components/ButtonAchievements";
-import ButtonPlay from "../components/ButtonPlay";
-import ButtonRanking from "../components/ButtonRanking";
-import Profile from "../components/Profile";
-import YourRanking from "../components/YourRanking";
+import ButtonAbout from '../components/ButtonAbout';
+import ButtonAchievements from '../components/ButtonAchievements';
+import ButtonPlay from '../components/ButtonPlay';
+import ButtonRanking from '../components/ButtonRanking';
+import Profile from '../components/Profile';
+import YourRanking from '../components/YourRanking';
 
-import { User } from "../helpers/User";
-import { Center } from "../styles";
-
-const id = 0;
-
-function getUser(id) {
-  const user = User.find((user) => user.id === id);
-  
-  return user;
-}
+import { Center } from '../styles';
 
 const Home = () => {
+  const uid = 'sOAcjF4TZFedF7tgyvLqyDrdL6T2';
+
   return (
     <>
-      <Profile user={getUser(id)} />
-      <YourRanking user={getUser(id)} />
+      <Profile uid={uid} />
+      <YourRanking uid={uid} />
       <Center>
         <ButtonPlay />
         <ButtonRanking />

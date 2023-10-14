@@ -1,7 +1,5 @@
-import { auth } from "./firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
-
-export let loged = false;
+import { auth } from './firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export const loginFirebase = async (email, password) => {
   try {
@@ -12,8 +10,7 @@ export const loginFirebase = async (email, password) => {
     );
     const user = userCredential.user;
 
-    console.log(user);
-    return true;
+    return user.uid;
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;

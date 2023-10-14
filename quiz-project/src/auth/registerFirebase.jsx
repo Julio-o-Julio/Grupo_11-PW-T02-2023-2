@@ -1,21 +1,21 @@
-import { auth } from "./firebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from './firebaseConfig';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-export const registerFirebase = (email, password) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
+export const registerFirebase = async (email, password) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
 
-      console.log(user);
+    return user.uid;
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
 
-      return true;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-
-      console.log(errorCode, errorMessage);
-
-      return false;
-    });
+    console.error(errorCode, errorMessage);
+    return false;
+  }
 };

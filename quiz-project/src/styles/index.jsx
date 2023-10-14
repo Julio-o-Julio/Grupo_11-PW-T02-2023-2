@@ -146,10 +146,16 @@ export const Span = styled.span`
   gap: 1.5rem;
 `;
 
-export const Form = styled.form`
+export const ContainerForm = styled.main`
   display: flex;
-  gap: 0.5rem;
   align-items: center;
+  flex-direction: column;
+`;
+
+export const ContentForm = styled.section`
+  position: relative;
+  padding: 0 0 1rem 0;
+  display: flex;
   flex-direction: column;
 `;
 
@@ -205,4 +211,13 @@ export const CenterInLine = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const SpanError = styled.span`
+  position: absolute;
+  left: 1rem;
+  bottom: 0;
+  color: rgba(255, 0, 0, 0.5);
+  font-size: 0.7rem;
+  font-weight: 500;
 `;

@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const admin = require('firebase-admin');
 const serviceAccount = require('../serviceAccountKey.json');
@@ -11,6 +12,7 @@ const routeUsers = require('./routes/users');
 
 const app = express();
 
+app.use(cors());
 app.use('/categories', routeCategories);
 app.use('/users', routeUsers);
 

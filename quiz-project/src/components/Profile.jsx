@@ -1,7 +1,10 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button, CenterInLine, StyledProfile } from "../styles";
-import Modal from "./Modal";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, CenterInLine, StyledProfile } from '../styles';
+import Modal from './Modal';
+import getUsername from '../hooks/getUsername';
+import { signOut } from 'firebase/auth';
+import { auth } from '../auth/firebaseConfig';
 
 const AvatarProfile = () => {
   return (
@@ -33,37 +36,57 @@ const AvatarProfile = () => {
   );
 };
 
-function getName(user) {
-  const name = user.name;
-  const fragmentName = name.split(" ");
+const getName = async (uid) => {
+  const name = await getUsername(uid);
+  const fragmentName = name.split(' ');
   const nameAndSurname =
     fragmentName.length > 1
-      ? fragmentName[0] + " " + fragmentName[1]
+      ? fragmentName[0] + ' ' + fragmentName[1]
       : fragmentName;
 
   return nameAndSurname;
-}
+};
 
-const Profile = ({ user }) => {
-  const navigate = useNavigate()
+const Profile = ({ uid }) => {
+  const navigate = useNavigate();
 
   const [openModal, setOpenModal] = useState(false);
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const userName = await getName(uid);
+        setName(userName);
+      } catch (error) {
+        console.error('Erro ao tentar obter o nome do usuário:', error);
+      }
+    }
+
+    fetchData();
+  }, [uid]);
 
   const handleExit = () => {
-    console.log("entrou!");
-    return navigate("/login");
+    signOut(auth)
+    .then(() => {
+      console.log('Usuário desconectado com sucesso.');
+      navigate('/login');
+    })
+    .catch((error) => {
+      console.error('Erro ao desconectar o usuário:', error);
+    });
   };
 
   return (
     <>
-      <StyledProfile key={user.id} onClick={() => setOpenModal(true)}>
+      <StyledProfile key={uid} onClick={() => setOpenModal(true)}>
         <AvatarProfile />
-        {getName(user)}
+        {name}
       </StyledProfile>
       <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
         <CenterInLine>
           <AvatarProfile />
-          {getName(user)}
+          {name}
         </CenterInLine>
         <Button onClick={handleExit}>Sair</Button>
       </Modal>

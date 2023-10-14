@@ -1,52 +1,120 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Form, Input, Label } from "../styles/index";
-import Header from "../components/Header";
-import { useState } from "react";
-import { registerFirebase } from "../auth/registerFirebase";
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  Button,
+  ContainerForm,
+  ContentForm,
+  Input,
+  Label,
+  SpanError
+} from '../styles/index';
+import Header from '../components/Header';
+import { registerFirebase } from '../auth/registerFirebase';
+import { useForm } from 'react-hook-form';
+import validator from 'validator';
 
 const Register = () => {
   const navigate = useNavigate();
 
-  const [dataForm, setDataForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    passwordRepet: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm();
 
-  const handleChange = (event) => {
-    setDataForm((dataForm) => ({
-      ...dataForm,
-      [event.target.name]: event.target.value,
-    }));
-  };
+  const watchPassword = watch('password');
 
-  const handleDataRegister = (event) => {
-    event.preventDefault();
-    return registerFirebase(dataForm.email, dataForm.password) && navigate("/login");
+  const onSubmit = async (data) => {
+    try {
+      const result = await registerFirebase(data.email, data.password);
+      if (result) {
+
+        return navigate('/');
+      }
+      
+    } catch (error) {
+      console.error('Erro durante o login:', error);
+    }
   };
 
   return (
     <>
       <Header>Cadastro</Header>
-      <Form onSubmit={handleDataRegister}>
-        <Label>Nome</Label>
-        <Input name="name" type="text" onChange={handleChange} required />
+      <ContainerForm>
+        <ContentForm>
+          <Label>Nome</Label>
+          <Input
+            type="text"
+            placeholder="Meu Nome"
+            {...register('name', {
+              required: true
+            })}
+          />
+          {errors?.name?.type == 'required' && (
+            <SpanError>O nome é obrigatório!</SpanError>
+          )}
+        </ContentForm>
 
-        <Label>E-mail</Label>
-        <Input name="email" type="email" onChange={handleChange} required />
+        <ContentForm>
+          <Label>E-mail</Label>
+          <Input
+            type="email"
+            placeholder="meuemail@gmail.com"
+            {...register('email', {
+              required: true,
+              validate: (value) => validator.isEmail(value)
+            })}
+          />
+          {errors?.email?.type == 'required' && (
+            <SpanError>O e-mail é obrigatório!</SpanError>
+          )}
+          {errors?.email?.type == 'validate' && (
+            <SpanError>E-mail inválido!</SpanError>
+          )}
+        </ContentForm>
 
-        <Label>Senha</Label>
-        <Input name="password" type="password" onChange={handleChange} required />
+        <ContentForm>
+          <Label>Senha</Label>
+          <Input
+            type="password"
+            placeholder="minhasenha123"
+            {...register('password', {
+              required: true,
+              minLength: 8,
+              validate: (value) => validator.isEmail(value)
+            })}
+          />
+          {errors?.password?.type == 'required' && (
+            <SpanError>A senha é obrigatória!</SpanError>
+          )}
+          {errors?.password?.type == 'minLength' && (
+            <SpanError>Digite uma senha com pelo menos 8 digitos!</SpanError>
+          )}
+        </ContentForm>
 
-        <Label>Repita a senha</Label>
-        <Input name="passwordRepet" type="password" onChange={handleChange} required />
+        <ContentForm>
+          <Label>Repita a senha</Label>
+          <Input
+            type="password"
+            placeholder="minhasenha123"
+            {...register('passwordRepet', {
+              required: true,
+              validate: (value) => value == watchPassword
+            })}
+          />
+          {errors?.passwordRepet?.type == 'required' && (
+            <SpanError>Repitir a senha é obrigatório!</SpanError>
+          )}
+          {errors?.passwordRepet?.type == 'validate' && (
+            <SpanError>As senhas precisam ser iguais!</SpanError>
+          )}
+        </ContentForm>
 
-        <Button>Registrar</Button>
-      </Form>
+        <Button onClick={() => handleSubmit(onSubmit)()}>Registrar</Button>
+      </ContainerForm>
       <span>
         <p>Já tem uma conta?</p>
-        <Link to={"/login"}>Clique aqui para entrar</Link>
+        <Link to={'/login'}>Clique aqui para entrar</Link>
       </span>
     </>
   );
