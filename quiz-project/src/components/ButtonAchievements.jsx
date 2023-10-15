@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import Modal from "./Modal";
+import Modal from './Modal';
+import Header from './Header';
+import ContentAchievements from './ContentAchievements';
 
-import { Button } from "../styles";
+import { Button, StyledConteinerAchievements } from '../styles';
 
 const StarSvg = () => {
   return (
@@ -34,7 +36,24 @@ const ButtonAchievements = () => {
         Minhas conquistas
       </Button>
       <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
-        Modal
+        <Header>Minhas conquistas</Header>
+        <StyledConteinerAchievements>
+          <ContentAchievements status={true}>
+            Conseguir o máximo de pontos na modalidade Todos
+          </ContentAchievements>
+          <ContentAchievements status={true}>
+            Conseguir o máximo de pontos na modalidade Todos
+          </ContentAchievements>
+          <ContentAchievements status={true}>
+            Conseguir o máximo de pontos na modalidade Todos
+          </ContentAchievements>
+          <ContentAchievements status={true}>
+            Conseguir o máximo de pontos na modalidade Todos
+          </ContentAchievements>
+          <ContentAchievements status={true}>
+            Conseguir o máximo de pontos na modalidade Todos
+          </ContentAchievements>
+        </StyledConteinerAchievements>
       </Modal>
     </>
   );

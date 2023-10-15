@@ -234,3 +234,63 @@ export const SectionData = styled.section`
   background: rgba(131, 117, 181, 0.2);
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 `;
+
+export const StyledConteinerRating = styled.section`
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  align-items: start;
+  min-width: 20rem;
+  max-height: 25rem;
+  overflow: auto;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background: rgba(131, 117, 181, 0.2);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+`;
+
+export const StyledContentRating = styled.section`
+  display: flex;
+  gap: 0.5rem;
+  align-items: start;
+  min-width: 20rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background: rgba(131, 117, 181, 0.2);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+`;
+
+export const StyledConteinerAchievements = styled.section`
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  align-items: start;
+  min-width: 20rem;
+  max-height: 25rem;
+  overflow: auto;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background: rgba(131, 117, 181, 0.2);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+`;
+
+export const StyledContentAchievements = styled.section`
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 20rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background: rgba(131, 117, 181, 0.2);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+`;

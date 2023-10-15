@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import Modal from "./Modal";
+import Modal from './Modal';
 
-import { Button } from "../styles";
+import { Button, StyledConteinerRating } from '../styles';
+import Header from './Header';
+import ContentRating from './ContentRating';
 
 const PodiumSvg = () => {
   return (
@@ -50,7 +52,19 @@ const ButtonRanking = () => {
         Ranking global
       </Button>
       <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
-        Modal
+        <Header>Ranking global</Header>
+        <StyledConteinerRating>
+          <ContentRating place={1}>Teste</ContentRating>
+          <ContentRating place={2}>Teste</ContentRating>
+          <ContentRating place={3}>Teste</ContentRating>
+          <ContentRating place={4}>Teste</ContentRating>
+          <ContentRating place={5}>Teste</ContentRating>
+          <ContentRating place={6}>Teste</ContentRating>
+          <ContentRating place={7}>Teste</ContentRating>
+          <ContentRating place={8}>Teste</ContentRating>
+          <ContentRating place={9}>Teste</ContentRating>
+          <ContentRating place={10}>Teste</ContentRating>
+        </StyledConteinerRating>
       </Modal>
     </>
   );
