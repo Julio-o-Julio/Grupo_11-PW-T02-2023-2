@@ -8,7 +8,7 @@ import YourRanking from '../components/YourRanking';
 import { Center } from '../styles';
 
 const Home = () => {
-  const uid = 'sOAcjF4TZFedF7tgyvLqyDrdL6T2';
+  const uid = '2gLNleMaoTT6vukT9ReWkSFwfen1';
 
   return (
     <>

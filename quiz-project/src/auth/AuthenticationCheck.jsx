@@ -18,7 +18,7 @@ const AuthenticationCheck = ({ children, path }) => {
   }, []);
 
   if (loading) {
-    return <SubTitle>Verificando autenticação...</SubTitle>;
+    <SubTitle>Verificando autenticação...</SubTitle>;
   }
 
   if (user) {

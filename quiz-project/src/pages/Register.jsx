@@ -28,12 +28,10 @@ const Register = () => {
     try {
       const result = await registerFirebase(data.email, data.password);
       if (result) {
-
         return navigate('/');
       }
-      
     } catch (error) {
-      console.error('Erro durante o login:', error);
+      console.error('Erro durante o cadastro:', error);
     }
   };
 
@@ -80,8 +78,7 @@ const Register = () => {
             placeholder="minhasenha123"
             {...register('password', {
               required: true,
-              minLength: 8,
-              validate: (value) => validator.isEmail(value)
+              minLength: 8
             })}
           />
           {errors?.password?.type == 'required' && (

@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, CenterInLine, StyledProfile } from '../styles';
+import {
+  Button,
+  CenterInLine,
+  SectionData,
+  StyledProfile
+} from '../styles';
 import Modal from './Modal';
 import getUsername from '../hooks/getUsername';
 import { signOut } from 'firebase/auth';
@@ -66,15 +71,19 @@ const Profile = ({ uid }) => {
     fetchData();
   }, [uid]);
 
+  const handleChangeData = () => {
+    return navigate('/changedata');
+  };
+
   const handleExit = () => {
     signOut(auth)
-    .then(() => {
-      console.log('Usuário desconectado com sucesso.');
-      navigate('/login');
-    })
-    .catch((error) => {
-      console.error('Erro ao desconectar o usuário:', error);
-    });
+      .then(() => {
+        console.log('Usuário desconectado com sucesso.');
+        navigate('/login');
+      })
+      .catch((error) => {
+        console.error('Erro ao desconectar o usuário:', error);
+      });
   };
 
   return (
@@ -86,8 +95,27 @@ const Profile = ({ uid }) => {
       <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
         <CenterInLine>
           <AvatarProfile />
-          {name}
+          <b>{name}</b>
         </CenterInLine>
+
+        <SectionData>
+          <b>Sua média</b>
+          <p>8/10</p>
+        </SectionData>
+        <SectionData>
+          <b>Sua melhor modalidade</b>
+          <p>Todos</p>
+        </SectionData>
+        <SectionData>
+          <b>Usuário</b>
+          <p>Teste</p>
+        </SectionData>
+        <SectionData>
+          <b>E-mail</b>
+          <p>teste@gmail.com</p>
+        </SectionData>
+
+        <Button onClick={handleChangeData}>Alterar dados</Button>
         <Button onClick={handleExit}>Sair</Button>
       </Modal>
     </>

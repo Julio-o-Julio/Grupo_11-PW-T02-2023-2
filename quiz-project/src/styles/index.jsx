@@ -64,7 +64,7 @@ export const StyledHeader = styled.header`
 export const StyledModal = styled.main`
   position: relative;
   min-width: 20rem;
-  max-width: 95%;
+  max-width: 40rem;
   height: fit-content;
   padding: 2.5rem 2rem;
   display: flex;
@@ -84,7 +84,7 @@ export const BgModal = styled.div`
   bottom: 0;
   width: 100%;
   height: 100%;
-  padding: 2rem 0;
+  padding: 2rem 0.5rem;
   display: flex;
   justify-content: center;
   backdrop-filter: blur(2px);
@@ -199,7 +199,7 @@ export const StyledYourRanking = styled.article`
 `;
 
 export const Center = styled.div`
-  gap: 1.5rem;
+  gap: 1rem;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -220,4 +220,17 @@ export const SpanError = styled.span`
   color: rgba(255, 0, 0, 0.5);
   font-size: 0.7rem;
   font-weight: 500;
+`;
+
+export const SectionData = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  min-width: 20rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background: rgba(131, 117, 181, 0.2);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 `;

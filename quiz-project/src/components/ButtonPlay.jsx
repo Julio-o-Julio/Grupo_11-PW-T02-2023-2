@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-import Modal from "./Modal";
+import Modal from './Modal';
+import Header from './Header';
 
-import { Button } from "../styles";
+import { Button, SubTitle } from '../styles';
 
 const PlaySvg = () => {
   return (
@@ -46,6 +48,8 @@ const PlaySvg = () => {
 const ButtonPlay = () => {
   const [openModal, setOpenModal] = useState(false);
 
+  const navigate = useNavigate();
+
   return (
     <>
       <Button onClick={() => setOpenModal(true)}>
@@ -53,7 +57,12 @@ const ButtonPlay = () => {
         Jogar
       </Button>
       <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
-        Modal
+        <Header>Jogar</Header>
+        <SubTitle>Modalidades</SubTitle>
+        <Button onClick={() => navigate('/category/todos')}>Todos</Button>
+        <Button onClick={() => navigate('/category/programacao')}>Programação</Button>
+        <Button onClick={() => navigate('/category/hardware')}>Hardware</Button>
+        <Button onClick={() => navigate('/category/historiacomputacao')}>História da computação</Button>
       </Modal>
     </>
   );
