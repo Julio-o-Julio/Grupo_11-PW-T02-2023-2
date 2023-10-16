@@ -57,13 +57,13 @@ const Game = () => {
 
   const handleResponse = (response) => {
     if (response === 'Nada') {
-      return navigate('/conclusion');
+      return navigate('/game/conclusion');
     } else if (response === 'A geração') {
-      return navigate('/conclusion');
+      return navigate('/game/conclusion');
     } else if (response === 'Plankalkül') {
-      return navigate('/conclusion');
+      return navigate('/game/conclusion');
     } else {
-      return navigate('/conclusionlose');
+      return navigate('/game/conclusionlose');
     }
   };
 
