@@ -16,6 +16,9 @@ import CodeVerification from './pages/CodeVerification.jsx';
 import ChangeData from './pages/ChangeData.jsx';
 import { UserProvider } from './hooks/UserContext.jsx';
 import ChangePassword from './pages/ChangePassword.jsx';
+import Game from './pages/Game.jsx';
+import Conclusionlose from './pages/Conclusionlose.jsx';
+import Conclusion from './pages/Conclusion.jsx';
 
 const router = createBrowserRouter([
   {
@@ -50,6 +53,18 @@ const router = createBrowserRouter([
       {
         path: '/changedata',
         element: <ChangeData />
+      },
+      {
+        path: '/game/:category',
+        element: <Game />
+      },
+      {
+        path: '/game/conclusion',
+        element: <Conclusion />
+      },
+      {
+        path: '/game/conclusionlose',
+        element: <Conclusionlose />
       }
     ]
   }

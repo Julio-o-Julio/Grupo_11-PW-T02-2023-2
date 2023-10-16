@@ -41,17 +41,17 @@ const ButtonAchievements = () => {
           <ContentAchievements status={true}>
             Conseguir o máximo de pontos na modalidade Todos
           </ContentAchievements>
-          <ContentAchievements status={true}>
-            Conseguir o máximo de pontos na modalidade Todos
+          <ContentAchievements status={false}>
+          Conseguir o máximo de pontos na modalidade Programação
+          </ContentAchievements>
+          <ContentAchievements status={false}>
+          Conseguir o máximo de pontos na modalidade Hardware
           </ContentAchievements>
           <ContentAchievements status={true}>
-            Conseguir o máximo de pontos na modalidade Todos
+          Conseguir o máximo de pontos na modalidade Hardware
           </ContentAchievements>
-          <ContentAchievements status={true}>
-            Conseguir o máximo de pontos na modalidade Todos
-          </ContentAchievements>
-          <ContentAchievements status={true}>
-            Conseguir o máximo de pontos na modalidade Todos
+          <ContentAchievements status={false}>
+            Conseguir chegar ao top 1 na modalidade Todos
           </ContentAchievements>
         </StyledConteinerAchievements>
       </Modal>

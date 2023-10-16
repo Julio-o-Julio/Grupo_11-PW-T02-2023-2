@@ -50,6 +50,10 @@ const ButtonPlay = () => {
 
   const navigate = useNavigate();
 
+  const redirectToGame = (category) => {
+    navigate(`/game/${category}`);
+  };
+
   return (
     <>
       <Button onClick={() => setOpenModal(true)}>
@@ -59,10 +63,10 @@ const ButtonPlay = () => {
       <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
         <Header>Jogar</Header>
         <SubTitle>Modalidades</SubTitle>
-        <Button onClick={() => navigate('/category/todos')}>Todos</Button>
-        <Button onClick={() => navigate('/category/programacao')}>Programação</Button>
-        <Button onClick={() => navigate('/category/hardware')}>Hardware</Button>
-        <Button onClick={() => navigate('/category/historiacomputacao')}>História da computação</Button>
+        <Button onClick={() => redirectToGame('todos')}>Todos</Button>
+        <Button onClick={() => redirectToGame('programacao')}>Programação</Button>
+        <Button onClick={() => redirectToGame('hardware')}>Hardware</Button>
+        <Button onClick={() => redirectToGame('historiacomputacao')}>História da computação</Button>
       </Modal>
     </>
   );

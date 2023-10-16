@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Button = styled.button`
   color: #fff;
@@ -66,7 +66,8 @@ export const StyledModal = styled.main`
   min-width: 20rem;
   max-width: 40rem;
   height: fit-content;
-  padding: 2.5rem 2rem;
+  max-height: 98%;
+  padding: 1.5rem 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,7 +85,7 @@ export const BgModal = styled.div`
   bottom: 0;
   width: 100%;
   height: 100%;
-  padding: 2rem 0.5rem;
+  padding: 1rem 0.5rem;
   display: flex;
   justify-content: center;
   backdrop-filter: blur(2px);
@@ -94,8 +95,8 @@ export const BgModal = styled.div`
 export const StyledExitButtonSvg = styled.button`
   cursor: pointer;
   position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
+  right: 0rem;
+  top: 0rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -236,6 +237,7 @@ export const SectionData = styled.section`
 `;
 
 export const StyledConteinerRating = styled.section`
+  position: relative;
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
@@ -265,12 +267,13 @@ export const StyledContentRating = styled.section`
 `;
 
 export const StyledConteinerAchievements = styled.section`
+  position: relative;
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   min-width: 20rem;
-  max-height: 25rem;
+  max-height: 28rem;
   overflow: auto;
   font-size: 1rem;
   padding: 0.5rem 1rem;
@@ -292,5 +295,23 @@ export const StyledContentAchievements = styled.section`
   border: none;
   border-radius: 1rem;
   background: rgba(131, 117, 181, 0.2);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+`;
+
+export const StyledQuestion = styled.article`
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  min-width: 18rem;
+  width: fit-content;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  border: 2px solid #8375b5;
+  background: #1f0e5e;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 `;
