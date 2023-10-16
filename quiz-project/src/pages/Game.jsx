@@ -82,7 +82,7 @@ const Game = () => {
       </StyledQuestion>
 
       {responses.map((response, index) => (
-        <Button key={index} onClick={handleResponse(response)}>
+        <Button key={index} onClick={() => handleResponse(response)}>
           {response}
         </Button>
       ))}
