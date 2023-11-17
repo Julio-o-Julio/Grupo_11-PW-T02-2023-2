@@ -1,0 +1,18 @@
+.form {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.btnCadastrar {
+  margin: 1em 20% 0;
+}
+
+.temConta {
+  text-align: center;
+  margin: 2rem auto 1rem;
+}
+
+.btnEntrar {
+  margin: 0 auto;
+}

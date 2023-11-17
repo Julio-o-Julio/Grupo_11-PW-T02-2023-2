@@ -1,0 +1,23 @@
+.form {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.esqueciSenha {
+  text-align: center;
+  margin: auto;
+}
+
+.btnEntrar {
+  margin: 1rem 20%;
+}
+
+.cadastrese {
+  text-align: center;
+  margin: 2rem auto 1rem;
+}
+
+.btnCadastrese {
+  margin: 0 auto;
+}
