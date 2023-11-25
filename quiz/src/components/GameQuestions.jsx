@@ -32,7 +32,6 @@ const GameQuestions = () => {
     const attGameDatas = async () => {
       const storedQuestionDatas = await getCurrentGameData(data.uid);
       const questionDatas = [...storedQuestionDatas, questionData];
-      console.log(questionDatas);
 
       await postCurrentGameData(questionDatas, data.uid);
     };

@@ -58,8 +58,6 @@ export const getQuestionRandom = async (category, userId) => {
     if (question) {
       const responses = shuffleVetor(question.responses);
 
-      console.log(question);
-
       return {
         id: question.id,
         question: question.question,
@@ -68,7 +66,6 @@ export const getQuestionRandom = async (category, userId) => {
       };
     }
   } else {
-    console.log('No such document!');
     return;
   }
 };
@@ -98,7 +95,6 @@ export const getQuestion = async (category, questionId) => {
       }
     }
   } else {
-    console.log('No such document!');
     return;
   }
 };
@@ -353,8 +349,6 @@ export const createQuestion = async (
   await updateDoc(doc(db, 'template', getCategory), {
     responsesCorrects: arrayUnion(newResponseCorrect)
   });
-
-  console.log('post sucsessful');
 };
 
 export const getEndGame = async (userId) => {
@@ -416,8 +410,6 @@ export const getResponseCorrectDatas = async (currentGameData) => {
   const filteredResponsesCorrects = (
     await Promise.all(responsesCorrects)
   ).filter((response) => response !== null);
-
-  console.log(filteredResponsesCorrects);
 
   return filteredResponsesCorrects;
 };
