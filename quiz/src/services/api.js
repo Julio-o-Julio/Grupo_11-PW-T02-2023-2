@@ -109,17 +109,124 @@ export const createUser = async (userId) => {
     currentGameData: [],
     playing: false,
     questionIdAtuall: 0,
-    scories: []
+    scories: [],
+    achievements: []
   });
 };
 
-export const createRankingUser = async (userId) => {
+export const createRankingUser = async (name, userId) => {
   const docRef = doc(db, 'ranking', 'usersScories');
 
-  const newScore = { score: 0, uid: userId };
+  const newScore = { score: 0, uid: userId, name };
 
   await updateDoc(docRef, {
     scories: arrayUnion(newScore)
+  });
+};
+
+export const getRanking = async (userId) => {
+  const docRef = doc(db, 'ranking', 'usersScories');
+  const ranking = await getDoc(docRef);
+
+  const currentData = ranking.data();
+
+  if (currentData) {
+    const sortRanking = currentData.scories.sort((a, b) => b.score - a.score);
+
+    if (userId) {
+      const userIndex = sortRanking.findIndex((item) => item.uid === userId);
+      const userScore = userIndex !== -1 ? sortRanking[userIndex].score : null;
+
+      return { userRanking: userIndex + 1, userScore };
+    }
+
+    return sortRanking;
+  }
+};
+
+export const postRanking = async (userId) => {
+  const docRef = doc(db, 'ranking', 'usersScories');
+
+  const docSnapshot = await getDoc(docRef);
+
+  const currentData = docSnapshot.data();
+
+  if (currentData) {
+    const userScories = await getUserScore(userId);
+
+    if (userScories) {
+      const soma = userScories.reduce(
+        (acumulador, elemento) => acumulador + elemento,
+        0
+      );
+
+      const newScore = soma / userScories.length;
+
+      const scoriesArray = currentData.scories;
+
+      const indexUser = scoriesArray.findIndex((item) => item.uid === userId);
+
+      if (indexUser !== -1) {
+        scoriesArray[indexUser].score = newScore;
+
+        await updateDoc(docRef, { scories: scoriesArray });
+      }
+    }
+  }
+};
+
+export const getUserScore = async (userId) => {
+  const docRef = doc(db, 'users', userId);
+  const docSnapshot = await getDoc(docRef);
+
+  const currentData = docSnapshot.data();
+
+  if (currentData) {
+    const userScories = currentData.scories;
+
+    return userScories;
+  }
+};
+
+export const postUserScore = async (newScore, userId) => {
+  const docRef = doc(db, 'users', userId);
+
+  await updateDoc(docRef, {
+    scories: arrayUnion(newScore)
+  });
+};
+
+export const getAchievements = async () => {
+  const docRef = doc(db, 'achievements', 'achievements');
+  const docSnapshot = await getDoc(docRef);
+
+  const currentData = docSnapshot.data();
+
+  if (currentData) {
+    const achievements = currentData.achievements;
+
+    return achievements;
+  }
+};
+
+export const getUserAchievements = async (userId) => {
+  const docRef = doc(db, 'users', userId);
+  const docSnapshot = await getDoc(docRef);
+
+  const currentData = docSnapshot.data();
+
+  if (currentData) {
+    const achievements = currentData.achievements;
+
+    return achievements;
+  }
+};
+
+export const postUserAchievements = async (newAchievementId, userId) => {
+  const docRef = doc(db, 'users', userId);
+
+  await updateDoc(docRef, {
+    achievements: arrayUnion(newAchievementId)
   });
 };
 
@@ -259,7 +366,7 @@ export const getEndGame = async (userId) => {
   if (currentData) {
     const currentGameData = currentData.currentGameData;
 
-    if (currentGameData.length === 4) {
+    if (currentGameData.length >= 4) {
       return true;
     } else {
       return false;

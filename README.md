@@ -1,5 +1,21 @@
 # Grupo_11-PW-T02-2023-2
 
-Web App de um quiz em um estilo dinâmico e descontraído para um trabalho de Programação para Web
+Web App de um Quiz em um estilo dinâmico e descontraído para um trabalho de Programação para Web da UFMS
 
-Para iniciar o projeto apenas baixe, entre nas pastas api e quiz-project em terminais separados e rode o comando 'npm run dev' em cada terminal.
+### Como rodar o projeto na sua máquina
+
+1. Abra o terminal em uma pasta de sua escolha e faça o clone do repositório rodando este código:
+
+> git clone https://github.com/Julio-o-Julio/Grupo_11-PW-T02-2023-2
+
+2. Após clonar o repositório, entre na pasta do repositório rodando o comando ainda no seu terminal:
+
+> cd ./Grupo_11-PW-T02-2023-2
+
+3. Ainda no terminal, para rodar o projeto, rode os seguintes comandos em sequência:
+
+> cd ./quiz
+
+> npm install
+
+> npm run dev

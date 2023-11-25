@@ -94,7 +94,7 @@ const UserStorage = ({ children }) => {
         setData(user);
         setName(name);
         createUser(user.uid);
-        createRankingUser(user.uid);
+        createRankingUser(name, user.uid);
         setLogin(true);
         navigate('/');
         setMessage([...message, 'Usuário criado com sucesso!']);

@@ -14,8 +14,9 @@
   white-space: nowrap;
   width: 100%;
   padding: 0.5rem 1rem;
-  display: flex;
+  display: grid;
   gap: 0.5rem;
+  grid-template-columns: min-content min-content 1fr min-content;
   align-items: center;
   border-radius: 0.5rem;
   background: rgba(131, 117, 181, 0.2);

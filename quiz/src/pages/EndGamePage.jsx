@@ -4,27 +4,21 @@ import FinalFace from '../components/svgs/FinalFace';
 import {
   getCategoryAtuall,
   postPlaying,
-  postCategoryAtuall,
   deleteCurrentGameData,
   getCurrentGameData,
-  getResponseCorrectDatas
+  getResponseCorrectDatas,
+  postUserScore,
+  postRanking
 } from '../services/api';
 import { UserContext } from '../contexts/UserContext';
-import ModalQuestions from '../components/ModalQuestions';
 import styles from '../styles/EndGamePage.module.css';
+import checkAchievements from '../helpers/checkAchievements';
 
 const EndGamePage = () => {
-  const [score, setScore] = useState(null);
-  const [responsesCorrectsDatas, setResponsesCorrectsDatas] = useState(null);
-  const [modalQuestions, setModalQuestions] = useState(null);
-  const [title, setTitle] = useState(
-    score > 6 ? 'Parabéns!!' : 'Você não foi muito bem desta vez!'
-  );
-  const [motivationalPharse, setMotivationalPharse] = useState(
-    score > 6
-      ? 'O seu ranking está subindo não é mesmo?'
-      : 'O que está acontecendo meu jovem? Jesus Christ!!'
-  );
+  const [score, setScore] = useState('');
+  const [title, setTitle] = useState('');
+  const [motivationalPharse, setMotivationalPharse] = useState('');
+  const [categoryAtuall, setCategoryAtuall] = useState(null);
 
   const { setCategory, data } = useContext(UserContext);
 
@@ -40,22 +34,45 @@ const EndGamePage = () => {
         );
 
         if (responseCorrectDatas) {
+          await postUserScore(responseCorrectDatas.length, data.uid);
+          await postRanking(data.uid);
+          await checkAchievements(
+            categoryAtuall,
+            responseCorrectDatas.length,
+            data.uid
+          );
           setScore(responseCorrectDatas.length);
-          setResponsesCorrectsDatas(responseCorrectDatas);
         }
       }
     };
 
     getDatas();
+  }, [data, setCategory, categoryAtuall]);
+
+  useEffect(() => {
+    setTitle(score >= 3 ? 'Parabéns!!' : 'Você não foi muito bem desta vez!');
+
+    setMotivationalPharse(
+      score >= 3
+        ? 'O seu ranking está subindo não é mesmo?'
+        : 'O que está acontecendo meu jovem? Jesus Christ!!'
+    );
+  }, [score]);
+
+  useEffect(() => {
+    const attCategoryAtuall = async () => {
+      const categoryAtuall = await getCategoryAtuall(data.uid);
+
+      if (categoryAtuall) setCategoryAtuall(categoryAtuall);
+    };
+
+    attCategoryAtuall();
   }, [data]);
 
   const handlePlayAgain = async () => {
-    const categoryAtuall = await getCategoryAtuall(data.uid);
-
     if (categoryAtuall) {
       setCategory(categoryAtuall);
       postPlaying(true, data.uid);
-      postCategoryAtuall(categoryAtuall, data.uid);
       deleteCurrentGameData(data.uid);
       navigate(`/game/category/${categoryAtuall}`);
     }
@@ -78,18 +95,7 @@ const EndGamePage = () => {
         </section>
 
         <button onClick={handlePlayAgain}>Jogar novamente</button>
-
-        <button
-          style={{ marginTop: '1rem' }}
-          onClick={() => setModalQuestions(true)}
-        >
-          Questões que acertou
-        </button>
       </main>
-
-      {modalQuestions && (
-        <ModalQuestions setModalQuestions={setModalQuestions} responsesCorrectsDatas={responsesCorrectsDatas} />
-      )}
     </>
   );
 };

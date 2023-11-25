@@ -1,5 +1,5 @@
 const FinalFace = ({ score }) => {
-  if (score > 6)
+  if (score >= 3)
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"

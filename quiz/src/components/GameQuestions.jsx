@@ -100,7 +100,7 @@ const GameQuestions = () => {
 
       if (endGame) {
         await postPlaying(false, data.uid);
-        await postQuestionIdAtuall(0);
+        await deleteQuestionIdAtuall(data.uid);
         navigate('/game/endgame');
 
         return endGame;
